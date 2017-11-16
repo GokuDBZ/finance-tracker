@@ -37,6 +37,9 @@ group :development, :test do
   gem 'sqlite3'
 end
 
+#this gem is for user authentication
+gem 'devise'
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'

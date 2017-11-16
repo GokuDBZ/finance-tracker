@@ -14,8 +14,6 @@
  *= require_self
  */
 .home_text{
-    color: antique-white;
+    color: 'antique-white';
 }
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "./welcome.scss";
+
