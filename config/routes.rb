@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   
   root "demo#index"
   get  '/demo/index', to: "demo#index"
+  get '/my_portfolio', to: "users#my_portfolio"
+  get '/stock_search', to: "stocks#search"
    
    
 
