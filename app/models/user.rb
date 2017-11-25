@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   end
   
   def user_name
-    return "{self.first_name} {self.last_name}".strip if self.first_name || self.last_name
+    return "#{self.first_name} #{self.last_name}".strip if self.first_name || self.last_name
     #if both are not present then simpy return 
     "ANONYMOUS"
   end

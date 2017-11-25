@@ -2,3 +2,24 @@
     display: inline-block;
     margin-top: 50px;
 }
+ul{
+    list-style: none;
+}
+.logout{
+    padding-left: 0px;
+    padding-top: 15px;
+}
+
+.user-name{
+    padding-top: 15px;
+}
+
+.navbar.nav-bar-right{
+    .btn{
+        color: #fff !important;
+        margin-top: 15%;
+    }
+    .btn-danger:hover{
+        background-color: darken(#d9534f, 20%) !important;
+    }
+}
