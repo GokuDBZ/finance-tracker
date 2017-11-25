@@ -17,4 +17,10 @@ class User < ActiveRecord::Base
   def under_stock?
     self.stocks.count <= 10
   end
+  
+  def user_name
+    return "{self.first_name} {self.last_name}".strip if self.first_name || self.last_name
+    #if both are not present then simpy return 
+    "ANONYMOUS"
+  end
 end
