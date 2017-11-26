@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     
     def my_friends
         if current_user.present?
-            @my_friends = current_user.try(:friends)
+            @friendships = current_user.try(:friends)
         end
     end
 end

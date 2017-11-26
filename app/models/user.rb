@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   has_many :user_stocks, class_name: 'UserStock'
   has_many :stocks, through: :user_stocks
   has_many :friendships, class_name: "Friendship"
-  has_many :friends, through: "Friendship", class_name: "Friendship"
+  
+  # we cannot add class_name here as "Friendship because then it would give friendhsip as result not user"
+  has_many :friends, through: :friendships
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
