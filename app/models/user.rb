@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :user_stocks, class_name: 'UserStock'
   has_many :stocks, through: :user_stocks
+  has_many :friendships, class_name: "Friendship"
+  has_many :friends, through: "Friendship", class_name: "Friendship"
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   
