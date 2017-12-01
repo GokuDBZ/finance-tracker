@@ -9,4 +9,8 @@ class UsersController < ApplicationController
             @friendships = current_user.try(:friends)
         end
     end
+    
+    def search
+        @users = User.search(params[:to_search])
+    end
 end
