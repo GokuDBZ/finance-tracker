@@ -43,6 +43,6 @@ class User < ActiveRecord::Base
   end
   
   def not_friends_with?(user)
-    nil
+    !self.friendships.where(friend_id: user.id).present?
   end
 end
