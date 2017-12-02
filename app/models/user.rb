@@ -19,6 +19,19 @@ class User < ActiveRecord::Base
     self.stocks.where(ticker: ticker.upcase).any?
   end
   
+  def self.search(to_be_searched)
+    result = nil
+    ["first_name","last_name","email"].each do |search|
+      result = search_by_(search, to_be_searched)
+      break if result.present?
+    end
+    result
+  end
+  
+  def self.search_by_(find_by = "email", to_be_searched)
+    return User.where("#{find_by} LIKE ? ", "%#{to_be_searched}%")
+  end
+ 
   def under_stock?
     self.stocks.count <= 10
   end

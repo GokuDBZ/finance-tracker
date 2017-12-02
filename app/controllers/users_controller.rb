@@ -9,4 +9,13 @@ class UsersController < ApplicationController
             @friendships = current_user.try(:friends)
         end
     end
+    
+    def search
+       @users = User.search(params[:search_param])
+       if @users.nil?
+           @message = "You have no friends with name or email #{params[:search_param]}"
+       end
+       render json: @message if @message.present?
+       render json: @users
+    end
 end
