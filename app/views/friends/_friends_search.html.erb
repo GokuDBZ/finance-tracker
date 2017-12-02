@@ -13,7 +13,7 @@
                         <%= link_to 'Add to friends',add_friend_path(user: current_user, friend: user), class: 'btn btn-xs btn-success', method: :post%>
                     <%else%>
                         <span class= "label label-primary"> Friends</span>
-                        <%= link_to 'Remove Friend',"#", class: 'btn btn-xs btn-success', method: :delete%>
+                        <%= link_to 'Remove Friend',"#", class: 'btn btn-xs btn-danger', method: :delete%>
                     <%end%>
                 </div>
             <%end%>
