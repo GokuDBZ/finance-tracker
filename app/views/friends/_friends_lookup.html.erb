@@ -1,0 +1,42 @@
+<div id="friend-lookup">
+    <h2>Search For Friends</h2>
+    <%= form_tag search_friends_path,  remote: true, method: "get", remote: true, id: "friend-lookup-form" do%>
+        
+        <div class="form-group row no-padding text-center col-md-12">
+            <div class="col-md-12">
+                <%= text_field_tag(:search_param, params[:search_param], placeholder: "Enter name or email to search", autofocus: true, class: "form-control search-box inp-lg") %>
+            </div>
+        </div>
+        <div class="col-md-2">
+r             <%= submit_tag "Search",class: "btn btn-lg btn-success" do  %>
+                 <i class="fa fa-search"></i>
+             <%end%>
+        </div>
+    <%end%>
+    <%if @users.present?%>
+        <div id="friend-lookup-results" class="well friends-block row">
+            <%@users.each do |user|%>
+                <div class="col-md-10">
+                <strong> Name</strong> <%= user.user_name%>
+                <strong> Profile</strong> <%= link_to "View Profile", user_path(user),
+                class: "btn btn-primary btn-xs", method: :post%>
+                <strong> </strong> <%= @stock.price%>
+                </div>
+                
+                <% if current_user.not_friends_with?(user) %>
+                    <%= link_to 'Add to friends',add_friend_path(user: current_user, friend: user), class: 'btn btn-xs btn-success', method: :post%>
+                <%else%>
+                    <span class= "label label-primary"> Friends</span>
+                <%end%>
+            <<%end%>
+            
+        </div>
+        
+    <%else%>
+        
+        <div class="well friends-block row">
+            You have no friends with this name or email
+        </div>
+    <%end%>
+    <%= render 'common/spinner'%>
+</div>
