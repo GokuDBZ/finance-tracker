@@ -1,0 +1,25 @@
+    <% if flash.now[:error].present?%>
+        <span class="badge" style="color: black;margin-top: 30px;"> <%= flash.now[:error]%></span>
+    <%end%>
+    <%if @users.present?%>
+        <div id="friend-lookup-results" class="well friends-block row" style="margin-top: 120px">
+            <%@users.each do |user|%>
+                <div class="col-md-10 well">
+                    <strong> Name</strong> <%= user.user_name%>
+                    <strong> Profile</strong> <%= link_to "View Profile", user_path(user),
+                    class: "btn btn-primary btn-xs", method: :post%>
+                    
+                    <% if current_user.not_friends_with?(user) %>
+                        <%= link_to 'Add to friends',add_friend_path(user: current_user, friend: user), class: 'btn btn-xs btn-success', method: :post%>
+                    <%else%>
+                        <span class= "label label-primary"> Friends</span>
+                        <%= link_to 'Remove Friend',"#", class: 'btn btn-xs btn-success', method: :delete%>
+                    <%end%>
+                </div>
+            <%end%>
+        </div>
+    <%elsif @message.present?%>
+        <div class="well friends-block row col-md-12">
+            <span class="badge"> You have no friends with this name or email </span>
+        </div>
+    <%end%>

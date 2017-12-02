@@ -11,11 +11,14 @@ class UsersController < ApplicationController
     end
     
     def search
-       @users = User.search(params[:search_param])
-       if @users.nil?
-           @message = "You have no friends with name or email #{params[:search_param]}"
-       end
-       render json: @message if @message.present?
-       render json: @users
+      if params[:search_param].blank?
+        flash.now[:error] = "please enter any name"
+      else
+        @users = User.search(params[:search_param])
+        if @users.blank?
+          @message = "You have no friends with name or email #{params[:search_param]}"
+        end
+      end
+      render partial: "friends/friends_search"
     end
 end

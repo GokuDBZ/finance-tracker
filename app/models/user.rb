@@ -41,4 +41,8 @@ class User < ActiveRecord::Base
     #if both are not present then simpy return 
     "ANONYMOUS"
   end
+  
+  def not_friends_with?(user)
+    nil
+  end
 end

@@ -11,30 +11,8 @@
             <%= submit_tag "Search",class: "btn btn-lg btn-success"%>
         </div>
     <%end%>
-    <%if @users.present?%>
-        <div id="friend-lookup-results" class="well friends-block row">
-            <%@users.each do |user|%>
-                <div class="col-md-10">
-                <strong> Name</strong> <%= user.user_name%>
-                <strong> Profile</strong> <%= link_to "View Profile", user_path(user),
-                class: "btn btn-primary btn-xs", method: :post%>
-                <strong> </strong> <%= @stock.price%>
-                </div>
-                
-                <% if current_user.not_friends_with?(user) %>
-                    <%= link_to 'Add to friends',add_friend_path(user: current_user, friend: user), class: 'btn btn-xs btn-success', method: :post%>
-                <%else%>
-                    <span class= "label label-primary"> Friends</span>
-                <%end%>
-            <<%end%>
-            
-        </div>
-        
-    <%elsif @message.present?%>
-        
-        <div class="well friends-block row col-md-12">
-            You have no friends with this name or email
-        </div>
-    <%end%>
+    <div class="results">
+        <%=render "friends/friends_search"%>
+    </div>
     <%= render 'common/spinner'%>
 </div>
