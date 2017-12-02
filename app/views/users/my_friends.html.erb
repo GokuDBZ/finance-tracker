@@ -1,3 +1,15 @@
+<%byebug%>
+<%case%>
+<%when flash[:friendship_removed].present?%>
+    <div class="alert alert-warning alert-success" role="alert"><%= flash[:friendship_removed]%>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+<%when flash[:friend_added].present?%>
+    <div class="alert alert-warning alert-success" role="alert"><%= flash[:friend_added]%>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+<%end%>
+    
 <%= render partial: "friends/friends_lookup"%>
 <% if @friendships.present?%>
     <table class="table table-striped">
@@ -11,8 +23,8 @@
                 <td><%= friend.user_name%></td>
                 <td><%= friend.email%></td>
                 <td><%= link_to "View Profile", user_path(friend), class: "btn btn-primary btn-xs"%>
-                    <%= link_to "Remove", friendship_path(friend), class: "btn btn-danger btn-xs", method: :delete%>
-                </td>>
+                    <%= link_to "Remove", remove_friend_path(user_id: current_user.id, friend_id: friend.id), class: "btn btn-danger btn-xs", method: :delete%>
+                </td>
             </tr>
         <%end%>
     </tbody>
@@ -20,6 +32,6 @@
     <%= render partial: "friends/friends_search"%>
 <%else%>
     <div class="row col-lg-12">
-        You have no friends
+        <span class="badge">You have no friends</span>
     </div>
 <%end%>

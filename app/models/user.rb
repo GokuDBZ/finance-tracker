@@ -45,4 +45,9 @@ class User < ActiveRecord::Base
   def not_friends_with?(user)
     !self.friendships.where(friend_id: user.id).present?
   end
+  
+  def except_current_user(users)
+    users.reject{|user| user.id == self.id}
+    
+  end
 end
