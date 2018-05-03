@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5'
 
 # Use SCSS for stylesheets
-gem 'stock_quote'
+gem "stock_quote", '~> 2.0.0'
 gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
 gem 'sass-rails', '~> 5.0'
